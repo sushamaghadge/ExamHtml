@@ -1,0 +1,30 @@
+So finally we conclude with,
+deciding approach 8 + 24 + 16 + 16 + 16 + 16 + 16 = 80 h
+
+1) - There will be a Tracking (#) field within sample status tab of sample request.
+- Need to manage this field through all state of sample requst  (4 days)
+- Need to add this sample request in the log when added.       (2 days)
+- Show tracking field into the sample request overview tab and in the Print sample request overview. Please confirm.   (2 days)
+- Show tracking field into the sample request export within Style xml export and Style excel export   (2 days)
+2) There should be another field for link which is the URL of the specific tracking page.
+User add the Tracking link in the text field if it is added then link will seen next to text field. Please confirm   (2 days)
+3) - Tracking field in to "my Report" and export info to Excel will be done by netlinq developers. Please confirm.
+4) - Is there is any rule maintaining the tracking number?    
+ 
+Add the 2 field tracking number and tracking link 
+- Deciding approach (2)
+- In Create and update templates.  (2) 
+- Add, Edit, Get these fields in PM's controllers client side changes   (2)
+- Add, Edit, Get these fields in server side changes (table, command & response, Command & query, Mapper, Domain)   (8)
+- Add, Edit, Get these fields in test case changes   (6)
+- Add log changes for the tracking field (4)
+- Show tracking field in the sample request overview report. (6)
+- Code review (2)
+- Code review changes (2)
+- Developer testing and CBT (1)
+- Bug fixing (4)
+
+
+
+
+

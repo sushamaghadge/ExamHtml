@@ -1,0 +1,190 @@
+﻿<script src="~/Scripts/jquery-1.7.1.min.js"></script>
+<header>
+
+    <div class="content-wrapper">
+
+        <div class="float-left">
+
+            <p class="site-title">
+                <a href="~/">ASP.NET Web API File Upload</a>
+            </p>
+
+        </div>
+
+    </div>
+
+</header>
+
+<div id="body">
+
+    <form name="form1">
+
+        <div>
+            <label>Browse File</label>
+
+            <br />
+            <br />
+            <input name="file1" id="file1" type="file" />
+            <input id="file1HHID" name="file1HHID" type="text" placeholder="HH ID Number" />
+            <input id="file1Description" name="file1Description" type="text" placeholder="Description" />
+            <br />
+
+            <input name="file2" id="file2" type="file" />
+            <input id="file2HHID" name="file2HHID" type="text" placeholder="HH ID Number" />
+            <input id="file2Description" name="file2Description" type="text" placeholder="Description" />
+            <br />
+
+            <input name="file3" id="file3" type="file" />
+            <input id="file3HHID" name="file3HHID" type="text" placeholder="HH ID Number" />
+            <input id="file3Description" name="file3Description" type="text" placeholder="Description" />
+            <br />
+
+            <input name="file4" id="file4" type="file" />
+            <input id="file4HHID" name="file4HHID" type="text" placeholder="HH ID Number" />
+            <input id="file4Description" name="file4Description" type="text" placeholder="Description" />
+        </div>
+
+        <div>
+            <input id="btnUploadMultiple" name="btnUploadFile" type="button" value="Upload Multiple" />
+        </div>
+
+    </form>
+
+
+    <form name="form2">
+
+        <div>
+            <label>Browse File</label>
+
+            <input id="file" name="file" type="file" />
+            <input id="fileHHID" name="fileHHID" type="text" placeholder="HH ID Number" />
+            <input id="fileDescription" name="fileDescription" type="text" placeholder="Description" />
+            <br />
+
+        </div>
+
+        <div>
+            <input id="btnUploadSingle" name="btnUploadFile" type="button" value="Upload Single" />
+        </div>
+
+    </form>
+</div>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $('#btnUploadSingle').on('click', function () {
+
+            var data = new FormData();
+
+            var file = $("#file").get(0).files;
+            var HHID = $.trim($("#fileHHID").val());
+            var desc = $.trim($("#fileDescription").val());
+
+            debugger;
+
+            // Add the uploaded image content to the form data collection
+            if (file.length > 0) {
+                data.append("File", file[0]);
+                data.append("fileHHID", HHID);
+                data.append("fileDescription", desc);
+
+            }
+
+            // Make Ajax request with the contentType = false, and processData = false
+            var ajaxRequest = $.ajax({
+                type: "POST",
+                url: "/api/Enrollment",
+                contentType: false,
+                processData: false,
+                data: data,
+                success: function (responseData, textStatus) {
+                    if (textStatus == 'success') {
+                        alert(textStatus);
+                    }
+                },
+                error: function (a, b, c) {
+                    alert("Bad request");
+                }
+            });
+
+            //ajaxRequest.done(function (responseData, textStatus) {
+            //    if (textStatus == 'success') {
+            //        if (responseData != null) {
+            //            alert(textStatus);
+            //        }
+            //    } else {
+            //        alert(responseData.Value);
+            //    }
+            //});
+        });
+
+
+
+        $('#btnUploadMultiple').on('click', function () {
+
+            var data = new FormData();
+
+            var file1 = $("#file1").get(0).files;
+            var file2 = $("#file2").get(0).files;
+            var file3 = $("#file3").get(0).files;
+            var file4 = $("#file4").get(0).files;
+
+            var HHID1 = $.trim($("#file1HHID").val());
+            var HHID2 = $.trim($("#file2HHID").val());
+            var HHID3 = $.trim($("#file3HHID").val());
+            var HHID4 = $.trim($("#file4HHID").val());
+
+            var desc1 = $.trim($("#file1Description").val());
+            var desc2 = $.trim($("#file2Description").val());
+            var desc3 = $.trim($("#file3Description").val());
+            var desc4 = $.trim($("#file4Description").val());
+
+            // Add the uploaded image content to the form data collection
+            if (file1.length > 0 && file2.length > 0 && file3.length > 0 && file4.length > 0) {
+                data.append("File1", file1[0]);
+                data.append("File2", file2[0]);
+                data.append("File3", file3[0]);
+                data.append("File4", file4[0]);
+
+                data.append("file1HHID", HHID1);
+                data.append("file2HHID", HHID2);
+                data.append("file3HHID", HHID3);
+                data.append("file4HHID", HHID4);
+
+                data.append("file1Description", desc1);
+                data.append("file2Description", desc2);
+                data.append("file3Description", desc3);
+                data.append("file4Description", desc4);
+            }
+
+            // Make Ajax request with the contentType = false, and processData = false
+            var ajaxRequest = $.ajax({
+                type: "POST",
+                url: "/api/Survey",
+                contentType: false,
+                processData: false,
+                data: data,
+                success: function (responseData, textStatus) {
+                    if (textStatus == 'success') {
+                        alert(textStatus);
+                    }
+                },
+                error: function (a, b, c) {
+                    alert("Bad request");
+                }
+            });
+
+            //ajaxRequest.done(function (responseData, textStatus) {
+            //    if (textStatus == 'success') {
+            //        if (responseData != null) {
+            //            alert(textStatus);
+            //        }
+            //    } else {
+            //        alert(responseData.Value);
+            //    }
+            //});
+        });
+    });
+</script>
